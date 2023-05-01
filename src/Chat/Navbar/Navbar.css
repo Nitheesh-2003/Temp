@@ -1,0 +1,16 @@
+.navbar{
+    background: linear-gradient(-135deg, rgb(215, 212, 212),rgb(243, 241, 241));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+.pri-btn{
+    border : none;
+    outline: none;
+    padding : 10px;
+    margin: 2px 5px;
+    color: white;
+    background-color: rgb(94, 93, 93);
+    border-radius: 4px;
+}

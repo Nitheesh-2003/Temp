@@ -1,0 +1,9 @@
+.ImageUploader{
+    border : 1px solid black;
+    display: flex;
+    flex-direction: column;
+    padding : 10px;
+    justify-content: space-around;
+    margin: 10px;
+    width : 100%;
+}
