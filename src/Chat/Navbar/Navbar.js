@@ -5,7 +5,7 @@ const Navbar = () => {
     <div className="navbar">
         <h1>Chat AI</h1>
         <div className="nav-right">
-            <button className='pri-btn'>Log In</button>
+            <button>Log In</button>
             <button className='pri-btn'>Sign Up</button>
         </div>
     </div> );

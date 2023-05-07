@@ -1,42 +1,23 @@
 import './App.css';
-import Navbar from './Chat/Navbar/Navbar.js'
-import Post from './Chat/Post/Post.js'
-import ImageUploader from './Chat/ImageUploader/ImageUploader';
-import { useState , useEffect } from 'react' 
-import {db} from './firebase'
-import {collection,onSnapshot,query,orderBy } from 'firebase/firestore';
+import Login from './Chat/Login/Login';
+import SignUp from './Chat/Login/Signup';
+import { Route,Routes } from 'react-router-dom';
+import Chat from './Chat/Chat.js';
+import { UserAuthContextProvider } from './Chat/Login/UserAuthContext';
+import ProtectedRoute from './Chat/Login/ProtectedRoute';
 
 function App() {
-  const [post,setPost]=useState([]);
-
-  useEffect(() => {
-    const q = query(collection(db, 'post'), orderBy('timestamp', 'desc'));
-    onSnapshot(q, (snapshot) => {
-      setPost(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          post: doc.data()
-        }))
-      );
-    })
-  }, []);
-  
-
+ 
   return (
    <div className="App">
-    <Navbar></Navbar>
-   <div className="section">
-    <div className="ap-left">
-        {
-          post.map(({id,post}) => (
-            <Post key={id} postID={id}  username={post.username} ImageURL={post.ImageURL} comment={post.comment} />
-          ))
-        }
-      </div>
-      <div className="ap-right">
-        <ImageUploader></ImageUploader>
-      </div>
-   </div>
+    <UserAuthContextProvider>
+      <Routes>
+      <Route path="/home" element={<ProtectedRoute><Chat /></ProtectedRoute>}/>
+        <Route path='/' element={<Login></Login>} ></Route>
+        <Route path='/signup' element={<SignUp></SignUp>} ></Route>
+        
+      </Routes>
+    </UserAuthContextProvider>
    </div>
   );
 }
